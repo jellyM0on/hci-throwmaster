@@ -1,0 +1,36 @@
+@font-face {
+  font-family: main-font;
+  src: url("./assets/Fbwall.ttf");
+}
+
+@font-face {
+  font-family: sub-font;
+  src: url("./assets/Babydoll.ttf");
+}
+
+html, body {
+  margin: 0;
+  padding: 0; 
+  background-color: #f7f4ee;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#screen {
+  height: 100vh;
+  width: 100vw; 
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  font-family: main-font;
+  font-size: 7vw;
+  line-height: 0.75;
+}
+
+button {
+  font-family: sub-font; 
+  background-color:unset;
+  border: none;
+}
