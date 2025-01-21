@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import bg from "../../assets/bg.png"
-import "./Game.css"
+import "./GameCanvas.css"
 
-import ModeSelectionScreen from "../../components/ModeSelectionScreen/ModeSelectionScreen";
-import GameScreen from "../../components/GameScreen/GameScreen";
+import ModeSelectionScreen from "../../screens/ModeSelectionScreen/ModeSelectionScreen";
+import GameScreen from "../../screens/GameScreen/GameScreen";
+import TutorialScreen from "../../screens/TutorialScreen/TutorialScreen";
 
-export default function Game({screen, setScreen}){
+export default function GameCanvas({screen, setScreen}){
     useEffect(() => {
         const body = document.body;
         body.style.overflow = "hidden"; 
@@ -19,6 +20,8 @@ export default function Game({screen, setScreen}){
 
     const renderScreen = () => {
         switch (screen) {
+            case "tutorial_screen": 
+                return <TutorialScreen setScreen={setScreen}/>;
             case "mode_selection":
                 return <ModeSelectionScreen setScreen={setScreen} />;
             case "game_screen":

@@ -5,8 +5,9 @@ header {
 }
 
 header > button > img{
-   width: 4em;
-   cursor: pointer;
+    position: absolute; 
+    width: 4em;
+    cursor: pointer;
 }
 
 header > button > img:hover {

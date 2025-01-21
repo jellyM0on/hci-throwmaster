@@ -34,3 +34,24 @@ button {
   background-color:unset;
   border: none;
 }
+
+h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+  font-family: sub-font;
+}
+
+p, ul {
+  font-family: sans-serif;
+}
+
+ul {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-plain {
+  font-size: medium;
+  font-family: sub-font;
+}

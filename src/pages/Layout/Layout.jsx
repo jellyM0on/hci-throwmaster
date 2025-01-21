@@ -17,6 +17,9 @@ export default function Layout({screen}){
              
             </header>
             <Outlet/>
+            <footer>
+                {screen == "game_screen" ? <button><img src={volumeBtn} alt="" /></button> : null}
+            </footer>
         </>
     )
 }
