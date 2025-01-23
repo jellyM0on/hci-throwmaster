@@ -1,0 +1,49 @@
+{
+    "components": {
+      "compostable": [
+        {"fileName": "leaf2_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1-8eO-8YSbRsUYADHSJd2GsAiE8b1-qNR"},
+        {"fileName": "compostable_trashcan.png", "imageURL": "https://drive.google.com/uc?export=view&id=1-veW8yF4eAqEY5H75g802WoPuEl0_WxI"},
+        {"fileName": "apple_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1DHsx8jUBH8rn9a1rh-PHy8NJ-6WY59Tl"},
+        {"fileName": "avodado_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1EXvzPiNLEzm0Qk3n4Vht9wT29IrrLEyo"},
+        {"fileName": "branch_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1FtXCI3WPw6iGANtINjrBQKx_dm0sRpN7"},
+        {"fileName": "leaf_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1IconODqwt3keVjpYUAlM2HJ6h0pl59Cw"},
+        {"fileName": "bananapeel_com.png", "imageURL": "https://drive.google.com/uc?export=view&id=1pzWxnn32KfgAkvjvvUTUs6ozhB9ywh7k"}
+      ],
+      "recyclable": [
+        {"fileName": "can_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=185h2Cymz_QTRgZZfkyEsryOLTdtHZngj"},
+        {"fileName": "can_rec(1).png", "imageURL": "https://drive.google.com/uc?export=view&id=1XKxsbp7elqUItdsg-Q1w1sl88cx38d9I"},
+        {"fileName": "bag_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=1_6nE6iLRTP7yv1SM8vH39DcuYdIOsQLi"},
+        {"fileName": "cloth_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=1mTOeOnDt8UI2nHPYajfTzesWjrFZPKuk"},
+        {"fileName": "recyclable_trashbin.png", "imageURL": "https://drive.google.com/uc?export=view&id=1mUB-y98lJ7MphrroxJl64R4-DvsM_FBv"},
+        {"fileName": "bottle_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=1oPNWj7kLH_PcAp8sMKeYk6u0FbF-Uucy"},
+        {"fileName": "cardboard_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=1tT-er2nMoRa-RcKqioZ7lc8S2oLTq91V"},
+        {"fileName": "shoes_rec.png", "imageURL": "https://drive.google.com/uc?export=view&id=1FhhWJ-jLoUSBKkvZVZRx0n3CwjQtnFNG"}
+      ],
+      "residual": [
+        {"fileName": "brokenPorcelain_Res.png", "imageURL": "https://drive.google.com/uc?export=view&id=11mWxaQsshad0WO9uPtlem4A4Au6HUXqv"},
+        {"fileName": "residual_trashcan.png", "imageURL": "https://drive.google.com/uc?export=view&id=1CurT0uyl8UFhYCvDMH_eOF8JaGYlMf2-"},
+        {"fileName": "sanitrayNapkin_res.png", "imageURL": "https://drive.google.com/uc?export=view&id=1OEDEnH1-rEa5f3r94U_15MKmGMU6iOkZ"},
+        {"fileName": "potatoChip_Res.png", "imageURL": "https://drive.google.com/uc?export=view&id=1aSPxsR9fBjnX5qYGJW1_ZgerZYIAaM03"},
+        {"fileName": "brokenGlass_res.png", "imageURL": "https://drive.google.com/uc?export=view&id=1fKGxO3uV3xlnC-1Elpn2kKtMl5WR4S7i"},
+        {"fileName": "candyWrapper_res.png", "imageURL": "https://drive.google.com/uc?export=view&id=1nQjqAc-Yzq-twFLL52rLBlbLD1QXachD"},
+        {"fileName": "milkCarton_res.png", "imageURL": "https://drive.google.com/uc?export=view&id=1zd9QR1G2KbQNJASYZeD7UByDiuqhZex_"}
+      ],
+      "hazardous": [
+        {"fileName": "radio_haz.png", "imageURL": "https://drive.google.com/uc?export=view&id=18zGzsoBBT587jvmBfKzZdIP6m7qj_Yi7"},
+        {"fileName": "charger_haz.png", "imageURL": "https://drive.google.com/uc?export=view&id=1Ccm5f7_ojAAs8GdrAOCcUwzlWVESKiVR"},
+        {"fileName": "aerosolspray_haz.png", "imageURL": "https://drive.google.com/uc?export=view&id=1FePCMIM237sXmT54P6pxDYcw_7PJNW1d"},
+        {"fileName": "battery_haz.png", "imageURL": "https://drive.google.com/uc?export=view&id=1PJss7Aih3vy2YTIl_tjdKOgXRuCcSD2m"},
+        {"fileName": "appliance_haz.png", "imageURL": "https://drive.google.com/uc?export=view&id=1dF9P6pbfFOlqxoTPKt5l9C9j7r8NQZjH"},
+        {"fileName": "hazardous_trashcan.png", "imageURL": "https://drive.google.com/uc?export=view&id=1q4vTApDGTL1gRnRMifbMThKX335n-tp3"}
+      ]
+    },
+    "musicAssets": [
+      {"fileName": "Winner_SFX.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1w0KysJzQ85FWz17fO3Dq6F1QW5Jvq8Kv"},
+      {"fileName": "GameOver_SFX.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1RSVnAz2WbCTjc1GOM6HY1-n5MTuJ3deo"},
+      {"fileName": "Button Click_SFX.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1tXZ32zF9Xm9A0Euc7q99pp7VTD2qeBnx"},
+      {"fileName": "Music.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1ylLlYM8pT_VbZrTjQZicVTp1ekAazxM6"},
+      {"fileName": "Wrong_SFX.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1JN7n281jwB0gjGtmwPQUSN3iSmy83S25"},
+      {"fileName": "Correct_SFX.mp3", "fileURL": "https://drive.google.com/uc?export=view&id=1lAqguxmgUGFxDHpzNZonm0AkA5jNMd9I"}
+    ]
+  }
+  
