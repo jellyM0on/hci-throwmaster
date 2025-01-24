@@ -1,0 +1,18 @@
+#game-container #game-bg {
+    z-index: -5;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    user-select: none;
+    pointer-events: none;
+
+   
+}
+
+#game-bg img {
+    width: 180vh;
+    opacity: 0.5;
+    filter: brightness(50%);
+
+}
