@@ -1,8 +1,5 @@
 import "./TutorialScreen.css"
 import InfoContainer from "../../components/InfoContainer/InfoContainer"
-import downBtn from "../../assets/tutorial/down.png"
-import leftBtn from "../../assets/tutorial/left.png"
-import rightBtn from "../../assets/tutorial/right.png"
 
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { FaArrowAltCircleDown } from "react-icons/fa";
