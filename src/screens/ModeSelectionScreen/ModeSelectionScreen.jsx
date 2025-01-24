@@ -61,7 +61,7 @@ export default function ModeSelectionScreen({setScreen}) {
     }
     return(
         <div id="mode-selection">
-           <InfoContainer title={"Select a Game Mode"} content={<Content/>} navBtns={<Nav/>}/>
+           <InfoContainer title={"Select a Game Mode"} content={<Content/>} navBtns={<Nav/>}  navType="multi"/>
         </div>
     )
 }

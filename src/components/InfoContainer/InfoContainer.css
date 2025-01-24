@@ -3,7 +3,8 @@
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%);
-    width: 80vw;
+    width: 90vw;
+    height: 90vh;
     z-index: -1;
 }
 
@@ -32,6 +33,13 @@
     margin-top: 1em;
     display: flex;
     flex-direction: row;
+}
+
+.nav-single {
+    justify-content: end;
+}
+
+.nav-multi {
     justify-content: space-between;
 }
 

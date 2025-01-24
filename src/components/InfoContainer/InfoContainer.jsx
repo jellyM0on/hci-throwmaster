@@ -1,7 +1,10 @@
 import "./InfoContainer.css"
 import bg from "../../assets/paper1.png"
 
-export default function InfoContainer({title, content, navBtns}){
+import React from "react"
+export default function InfoContainer({title, content, navBtns, navType}){
+    console.log(navType)
+
     return(
         <div className="info-container">
             <img src={bg} alt="bg" class="info-container-bg"/>
@@ -11,7 +14,9 @@ export default function InfoContainer({title, content, navBtns}){
                     <>{content}</>
                 </div>
                            
-                <div class="info-container-nav">{navBtns}</div>
+                <div className={navType == "multi" ? "info-container-nav nav-multi" : "info-container-nav nav-single"}>
+                    {navBtns}
+                </div>
             </div>
         </div>
     )
