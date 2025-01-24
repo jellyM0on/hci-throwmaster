@@ -1,29 +1,67 @@
 import "./ModeSelectionScreen.css"
-import bg from "../../assets/paper1.png"
+import InfoContainer from "../../components/InfoContainer/InfoContainer"
+import { VscTriangleRight } from "react-icons/vsc"
+import { VscTriangleLeft } from "react-icons/vsc"
+
+import { useState } from "react"
 
 export default function ModeSelectionScreen({setScreen}) {
+
+    const Content = () => {
+        const [mode, setMode] = useState("easy")
+
+        return(
+            <div className="mode-selection-content">
+                <div className="mode-selection-fields">
+                    {mode == "easy" ? 
+                        <div className="mode-selection-field">
+                            <VscTriangleRight/>
+                            <button className="bold">Easy</button>
+                            <VscTriangleLeft/>
+                        </div> 
+                    
+                        : 
+                        <button onClick={ () => setMode("easy")}>Easy</button>
+                    }
+                    
+                    {mode == "competitive" ? 
+                        <div className="mode-selection-field">
+                            <VscTriangleRight/>
+                            <button className="bold">Competitive</button>
+                            <VscTriangleLeft/>
+                        </div> 
+                        : 
+                        <button onClick={() => setMode("competitive")}>Competitive</button>
+                    }
+                </div>
+                
+                <p className="mode-selection-description">
+                    {mode == "easy" ? "Relaxed and casual gameplay with no timer" : "Time limited challenge with a score multiplier"}
+                </p>
+            </div>
+        )
+    }
+
+    const Nav = () => {
+
+        const transitionToTutorial = () => {
+            setScreen("tutorial_screen");
+        }
+
+        const transitionToGame = () => {
+            setScreen("game_screen");
+        }
+
+        return(
+        <>
+            <button onClick={transitionToTutorial} className="btn-plain ">&lt;- How to play?</button>
+            <button onClick={transitionToGame} className="btn-plain ready-btn">I'm Ready!</button>
+        </>
+        )
+    }
     return(
-        <div id="tutorial-screen">
-                   <div id="tutorial-container">
-                       <img src={bg} alt="bg" id="tutorial-bg"/>
-                       <div id="tutorial-content">
-                           <h2>SELECT A GAME MODE</h2>
-                           <div>
-                                <button>Easy</button>
-                                <button>Difficult</button>
-                            </div>
-       
-       
-                           <div id="tutorial-next-btn">
-                            <button>test</button>
-                               {/* <button className="btn-plain" onClick={transitionToModeSelection}>Select Game Mode -&gt;</button> */}
-                           </div>
-                       </div>
-       
-                      
-                   </div>
-       
-                  
-               </div>
+        <div id="mode-selection">
+           <InfoContainer title={"Select a Game Mode"} content={<Content/>} navBtns={<Nav/>}/>
+        </div>
     )
 }

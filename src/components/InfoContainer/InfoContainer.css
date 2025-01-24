@@ -1,0 +1,40 @@
+.info-container-bg {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    z-index: -1;
+}
+
+.info-container {
+    width: 40vw;
+    padding: 5em;
+}
+
+.info-container-content,
+.info-container-content-main {
+    display: flex; 
+    flex-direction: column;
+}
+
+.info-container-content-main {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.info-container-content-main h2 {
+    margin-bottom: 2em;
+}
+
+.info-container-nav {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info-container button:hover {
+    text-decoration: underline;
+}
