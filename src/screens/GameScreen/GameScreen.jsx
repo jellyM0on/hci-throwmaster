@@ -1,6 +1,8 @@
 import "./GameScreen.css";
 import { useState, useEffect, useRef } from "react";
 
+import PauseMenu from "../../components/PauseMenu/PauseMenu";
+
 import data from "../../assets/data.json"
 import compostableBin from "../../assets/bins/bin_compostable.png"
 import hazardousBin from "../../assets/bins/bin_hazardous.png"
@@ -9,15 +11,17 @@ import residualBin from "../../assets/bins/bin_residual.png"
 
 import heart from "../../assets/heart.png"
 import scoreBg from "../../assets/paper3.png"
+import pauseBtn from "../../assets/pause.png"
 
-export default function GameScreen({ mode, setScreen }) {
-  const [lives, setLives] = useState(mode == "easy" ? 5 : 3)
+export default function GameScreen({ mode, screen, setScreen }) {
+  const [pause, setPause] = useState(false);
+  const [lives, setLives] = useState(mode == "easy" ? 5 : 3);
   const [trashItems, setTrashItems] = useState(null); 
   const [currentTrash, setCurrentTrash] = useState(null); 
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(7); 
+  const [time, setTime] = useState(60); 
   const [bin, setBin] = useState(null);
-
+  const [reset, setReset] = useState(false); 
 
   const livesRef = useRef(lives); 
   const scoreRef = useRef(score); 
@@ -91,6 +95,15 @@ export default function GameScreen({ mode, setScreen }) {
     return mm+":"+ss;
   }
 
+  const handlePause = () => {
+    if(!pause){
+      setPause(true); 
+    } else { 
+      setPause(false); 
+    }
+  }
+
+
 
   useEffect(() => {
     localStorage.clear
@@ -103,6 +116,11 @@ export default function GameScreen({ mode, setScreen }) {
 
 
   useEffect(() => {
+    if(pause){
+      console.log('paused')
+      return;
+    }
+
     const handleKeyDown = (event) => {
       let bin; 
       switch (event.key) {
@@ -132,10 +150,10 @@ export default function GameScreen({ mode, setScreen }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [pause]);
 
   useEffect(() => {
-    if(mode == "easy") return
+    if(mode == "easy" || pause) return
 
     if (time <= 0) {
       transitionToResult();
@@ -146,12 +164,29 @@ export default function GameScreen({ mode, setScreen }) {
     }, 1000);
 
     return () => clearInterval(timerId);
-  }, [time]);
+  }, [time, pause]);
+
+
+  useEffect(() => {
+    if(!reset) return 
+
+    setPause(false);
+    setLives(mode == "easy" ? 5 : 3); 
+    setTrashItems(null)
+    setCurrentTrash(null)
+    setScore(0)
+    setTime(60)
+    setBin(null)
+    setReset(false)
+
+    randomizeItems();
+    
+  }, [reset])
 
 
   return (
     <div id="game-screen">
-
+      {pause ? <PauseMenu setPause={setPause} setReset={setReset} setScreen={setScreen}/> : null}
       <div className="score-container">
         <img src={scoreBg} alt="" />
         <h2>{score}</h2>
@@ -218,6 +253,9 @@ export default function GameScreen({ mode, setScreen }) {
         )}
       </div>
 
+      <footer>
+        <button id="pause-btn" onClick={handlePause}><img src={pauseBtn} alt="pause" /></button>
+      </footer>
     </div>
   );
 }

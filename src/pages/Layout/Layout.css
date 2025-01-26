@@ -15,24 +15,3 @@ header > button > img{
 header > button > img:hover {
     width: 4.5em;
 }
-
-footer {
-    position: absolute;
-    bottom: 1em;
-    right: 0em;
-    padding-right: 6em;
-    display: flex;
-    align-items: end;
-    z-index: 99;
-}
-
-footer > button > img{
-    position: absolute; 
-    bottom: 1em;
-    width: 4em; 
-}
-
-footer > button > img:hover {
-    width: 4.5em;
-}
-
