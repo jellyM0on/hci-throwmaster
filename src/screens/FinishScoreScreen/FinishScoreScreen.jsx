@@ -1,6 +1,17 @@
-import React from 'react';
+import InfoContainer from "../../components/InfoContainer/InfoContainer";
+import "./FinishScoreScreen.css"
 
-function FinishScoreScreen({ score, onPlayAgain, onMainMenu, completed }) {
+import { useEffect } from "react";
+import { playBg } from "../../utils/playBg";
+import { stopGameBg } from "../../utils/playGameBg";
+import playClick from "../../utils/playClick";
+
+import { useNavigate } from "react-router-dom";
+
+function FinishScoreScreen({setScreen}) {
+  useEffect(() => {
+    stopGameBg();
+  }, [])
   // Define greetings for success and failure scenarios
   const successGreetings = [
     "You rock!",
@@ -29,29 +40,48 @@ function FinishScoreScreen({ score, onPlayAgain, onMainMenu, completed }) {
     "Stay determined!"
   ];
 
-  // Choose greetings based on completion status
-  const greetings = completed ? successGreetings : failureGreetings;
+  const score = sessionStorage.getItem("score")
+  const time = sessionStorage.getItem("time")
+  const mode = sessionStorage.getItem("mode")
+  const lives = sessionStorage.getItem("lives")
 
+  // Choose greetings based on completion status
+  const greetings = ((mode == "competitive" && time != "00:00" && lives != 0) || lives != 0) ? successGreetings : failureGreetings;
+  
   // Randomly select a greeting
   const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
 
-  return (
-    <div className="finish-score-screen">
-      <h1 className="title">{randomGreeting}</h1>
-      <h2 className="score-header">Your Score:</h2>
-      <p className="score-value">{score} correct turns</p>
-      <div className="button-container">
-        <button 
-          className="play-again-button" 
-          onClick={onPlayAgain}>
-          Play Again
-        </button>
-        <button 
-          className="main-menu-button" 
-          onClick={onMainMenu}>
-          Main Menu
-        </button>
+  const navigate = useNavigate();
+  
+  const handleHome = () => {
+    playClick(); 
+    navigate("/")
+  }
+
+  const handleAgain = () => {
+    playClick(); 
+    playBg(); 
+    setScreen("mode_selection")
+  }
+
+
+  const Content = () => {
+    return(
+      <div class="result-container">
+        <p>Mode: {mode.toUpperCase()}</p>
+        <p>Score: {score}</p>
+        <p>Remaining Lives: {lives} </p>
+        <p>{mode == "competitive" ? time : null}</p>
+        <div class="btn-container">
+            <button onClick={handleHome}>Back to Home</button>
+            <button onClick={handleAgain}>Play again</button>
+        </div>
       </div>
+    )
+  }
+  return (
+    <div id="finish-score-screen">
+      <InfoContainer title={randomGreeting} content={<Content/>}/>
     </div>
   );
 }

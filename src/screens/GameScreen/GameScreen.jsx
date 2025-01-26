@@ -70,6 +70,7 @@ export default function GameScreen({ mode, screen, setScreen }) {
   }
 
   const transitionToResult = () => {
+    sessionStorage.setItem("mode", mode); 
     setScreen("result_screen"); 
   }
 
@@ -112,13 +113,18 @@ export default function GameScreen({ mode, screen, setScreen }) {
   }
 
   useEffect(() => {
-    localStorage.clear
+    sessionStorage.clear
     randomizeItems()
   }, [])
 
   useEffect(() => {
     livesRef.current = lives;
+    sessionStorage.setItem("lives", livesRef.current);
   }, [lives]);
+
+  useEffect(() => {
+    sessionStorage.setItem("score", score);
+  }, [score])
 
 
   useEffect(() => {
@@ -167,6 +173,8 @@ export default function GameScreen({ mode, screen, setScreen }) {
 
     const timerId = setInterval(() => {
       setTime((prevTime) => prevTime - 1);
+      sessionStorage.setItem("time", formatTime(time-1));
+
     }, 1000);
 
     return () => clearInterval(timerId);

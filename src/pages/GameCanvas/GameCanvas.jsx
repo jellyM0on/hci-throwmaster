@@ -5,7 +5,7 @@ import "./GameCanvas.css"
 import ModeSelectionScreen from "../../screens/ModeSelectionScreen/ModeSelectionScreen";
 import GameScreen from "../../screens/GameScreen/GameScreen";
 import TutorialScreen from "../../screens/TutorialScreen/TutorialScreen";
-import ResultScreen from "../../screens/ResultScreen/ResultScreen";
+import FinishScoreScreen from "../../screens/FinishScoreScreen/FinishScoreScreen";
 
 import { playBg, stopBg } from "../../utils/playBg";
 import { playGameBg, stopGameBg } from "../../utils/playGameBg";
@@ -35,7 +35,7 @@ export default function GameCanvas({screen, setScreen}){
             case "game_screen_competitive":
                 return <GameScreen mode="competitive" setScreen={setScreen}/>;
             case "result_screen":
-                return <ResultScreen/>
+                return <FinishScoreScreen setScreen={setScreen}/>
         }
     };
 
