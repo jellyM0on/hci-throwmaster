@@ -7,7 +7,12 @@ import GameScreen from "../../screens/GameScreen/GameScreen";
 import TutorialScreen from "../../screens/TutorialScreen/TutorialScreen";
 import ResultScreen from "../../screens/ResultScreen/ResultScreen";
 
+import { playBg, stopBg } from "../../utils/playBg";
+import { playGameBg, stopGameBg } from "../../utils/playGameBg";
+
 export default function GameCanvas({screen, setScreen}){
+    const [bgOn, setBgOn] = useState(true); 
+
     useEffect(() => {
         const body = document.body;
         body.style.overflow = "hidden"; 

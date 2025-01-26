@@ -4,53 +4,70 @@ import "./PauseMenu.css"
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
+import playClick from "../../utils/playClick";
+import { stopGameBg } from "../../utils/playGameBg";
+import { playBg, stopBg } from "../../utils/playBg";
+
 export default function PauseMenu({setPause, setScreen, setReset}){
     const [needsConfirm, setNeedsConfirm] = useState(null)
     const [needsConfirmMsg, setNeedsConfirmMsg] = useState(null); 
+
     const handleResume = () => {
+        playClick()
         setPause(false)
     }
 
     const handleRestart = () => {
+        playClick()
         setNeedsConfirmMsg("restart the game")
         setNeedsConfirm("restart")
     }
 
     const handleChangeMode = () => {
+        playClick()
         setNeedsConfirmMsg("quit and change the game mode")
         setNeedsConfirm("change-mode")
     }
 
     const handleTutorial = () => {
+        playClick()
         setNeedsConfirmMsg("quit and read the tutorial again")
         setNeedsConfirm("tutorial")
     }
 
     const handleQuit = () => {
+        playClick()
         setNeedsConfirmMsg("quit and go back to the home screen")
         setNeedsConfirm("home")
     }
 
     const handleCancel = () => {
+        playClick()
         setNeedsConfirm(null)
         setNeedsConfirmMsg(null)
     }
 
     const navigate = useNavigate();
     const handleConfirm = () => {
+        stopGameBg();
+        playBg();
         if(needsConfirm == "change-mode"){
+            playClick()
           setScreen("mode_selection")  
         } 
 
         if(needsConfirm == "tutorial"){
+            playClick()
             setScreen("tutorial_screen")
         }
 
         if(needsConfirm == "home"){
+            playClick()
             navigate("/")
         }
 
         if(needsConfirm == "restart"){
+            playClick()
             setReset(true)
         }
     }

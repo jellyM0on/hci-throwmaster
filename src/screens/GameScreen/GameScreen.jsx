@@ -1,6 +1,10 @@
 import "./GameScreen.css";
 import { useState, useEffect, useRef } from "react";
 
+import playClick from "../../utils/playClick";
+import playCorrect from "../../utils/playCorrect";
+import playWrong from "../../utils/playWrong";
+
 import PauseMenu from "../../components/PauseMenu/PauseMenu";
 
 import data from "../../assets/data.json"
@@ -71,8 +75,10 @@ export default function GameScreen({ mode, screen, setScreen }) {
 
   const updateScore = (currentTrash, bin) => {
     if(currentTrash.bin == bin){
+      playCorrect();
       setScore((prevScore) => prevScore + 100);
     } else {
+      playWrong(); 
       if(livesRef.current == 0){
         transitionToResult(); 
       } else {
@@ -97,14 +103,13 @@ export default function GameScreen({ mode, screen, setScreen }) {
   }
 
   const handlePause = () => {
+    playClick();
     if(!pause){
       setPause(true); 
     } else { 
       setPause(false); 
     }
   }
-
-
 
   useEffect(() => {
     localStorage.clear
@@ -183,7 +188,6 @@ export default function GameScreen({ mode, screen, setScreen }) {
     randomizeItems();
     
   }, [reset])
-
 
   return (
     <div id="game-screen">

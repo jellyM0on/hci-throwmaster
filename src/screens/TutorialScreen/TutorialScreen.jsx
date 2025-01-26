@@ -1,5 +1,6 @@
 import "./TutorialScreen.css"
 import InfoContainer from "../../components/InfoContainer/InfoContainer"
+import playClick from "../../utils/playClick";
 
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { FaArrowAltCircleDown } from "react-icons/fa";
@@ -10,6 +11,7 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 export default function TutorialScreen({setScreen}) {
 
     const transitionToModeSelection = () => {
+        playClick()
         setScreen("mode_selection");
     }
 
