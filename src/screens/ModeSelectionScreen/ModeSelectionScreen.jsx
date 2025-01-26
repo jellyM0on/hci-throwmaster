@@ -36,7 +36,7 @@ export default function ModeSelectionScreen({setScreen}) {
                 </div>
                 
                 <p className="mode-selection-description">
-                    {mode == "easy" ? "Relaxed and casual gameplay with no timer" : "Time limited challenge with a score multiplier"}
+                    {mode == "easy" ? "Relaxed and casual gameplay with no timer" : "Zenless Mode. You are a Segregation Machine FOREVER"}
                 </p>
             </div>
         )
