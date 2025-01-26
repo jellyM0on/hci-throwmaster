@@ -23,6 +23,7 @@ footer {
     padding-right: 6em;
     display: flex;
     align-items: end;
+    z-index: 99;
 }
 
 footer > button > img{

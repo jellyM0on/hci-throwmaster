@@ -20,7 +20,7 @@ export default function Layout({screen, setScreen}){
             </header>
             <Outlet/>
             <footer>
-                {screen == "game_screen" ? <button id="pause-btn"><img src={pauseBtn} alt="pause" /></button> : null}
+                {screen == "game_screen_easy" || screen=="game_screen_competitive" ? <button id="pause-btn"><img src={pauseBtn} alt="pause" /></button> : null}
             </footer>
         </>
     )

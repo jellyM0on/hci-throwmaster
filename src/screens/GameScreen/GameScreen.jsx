@@ -2,6 +2,13 @@ import "./GameScreen.css";
 import { useState, useEffect, useRef } from "react";
 
 import data from "../../assets/data.json"
+import compostableBin from "../../assets/bins/bin_compostable.png"
+import hazardousBin from "../../assets/bins/bin_hazardous.png"
+import recyclableBin from "../../assets/bins/bin_recyclable.png"
+import residualBin from "../../assets/bins/bin_residual.png"
+
+import heart from "../../assets/heart.png"
+import scoreBg from "../../assets/paper3.png"
 
 export default function GameScreen({ mode, setScreen }) {
   const [lives, setLives] = useState(3);
@@ -9,9 +16,10 @@ export default function GameScreen({ mode, setScreen }) {
   const [currentTrash, setCurrentTrash] = useState(null); 
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(60); 
-  const [bin, setBin] = useState("null");
+  const [bin, setBin] = useState(null);
 
   const trashItemsRef = useRef();
+  const currentTrashRef = useRef(currentTrash);
 
   const randomizeItems = () => {
     const objects = data.objects; 
@@ -28,7 +36,7 @@ export default function GameScreen({ mode, setScreen }) {
   }
 
   const randomizeCurrentItem = (items) => {
-    const currentItems = items || trashItemsRef.current;
+    const currentItems = trashItemsRef.current;
     if (!currentItems || currentItems.length === 0) return;
 
     let randIndex;
@@ -43,8 +51,19 @@ export default function GameScreen({ mode, setScreen }) {
     );
 
     setCurrentTrash(currentItems[randIndex]);
+    currentTrashRef.current = currentItems[randIndex];
     setTrashItems(updatedTrashItems);
     trashItemsRef.current = updatedTrashItems;
+  }
+
+  const updateScore = (currentTrash, bin) => {
+    console.log(currentTrash)
+    console.log(bin)
+    if(currentTrash.bin == bin){
+      setScore((prevScore) => prevScore + 100);
+    } else {
+      setLives((prevLives) => prevLives - 1);
+    }
   }
 
 
@@ -55,7 +74,6 @@ export default function GameScreen({ mode, setScreen }) {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      randomizeCurrentItem(trashItems)
       let bin; 
       switch (event.key) {
         case 'ArrowUp':
@@ -71,7 +89,12 @@ export default function GameScreen({ mode, setScreen }) {
           bin = "hazardous"
           break;
       }
-      setBin(bin)
+
+      if(bin){
+        setBin(bin)
+        updateScore(currentTrashRef.current, bin); 
+        randomizeCurrentItem(trashItems)
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -83,15 +106,46 @@ export default function GameScreen({ mode, setScreen }) {
 
   return (
     <div id="game-screen">
-      <div>
-        <p>{bin}</p>
-        <div className="trash-item">
-          <img src={currentTrash ? currentTrash.url : ""} alt="currentTrash" />
+
+      <div className="score-container">
+        <img src={scoreBg} alt="" />
+        <h2>{score}</h2>
+      </div>
+
+      <div className="lives-container">
+        {Array.from({ length: lives }).map((_, index) => (
+          <img key={index} src={heart} alt="heart"/>
+        ))}
+      </div>
+
+       <div className="grid-container-3">
+        <div className="grid-row-3">
+          <div className="grid-cell"></div>
+          <div className="grid-cell">
+            <img className="bin-image" src={compostableBin} alt="compostable" />
+          </div>
+          <div className="grid-cell"></div>
+        </div>
+        <div className="grid-row-3">
+          <div className="grid-cell">
+            <img className="bin-image" src={residualBin} alt="compostable" />
+          </div>
+          <div className="grid-cell current-trash-container">
+            <img className="bin-image" src={currentTrash ? currentTrash.url : null} alt="compostable" />
+          </div>
+          <div className="grid-cell">
+            <img className="bin-image" src={hazardousBin} alt="compostable" />
+          </div>
+        </div>
+        <div className="grid-row-3">
+          <div className="grid-cell"></div>
+          <div className="grid-cell">
+           <img className="bin-image" src={recyclableBin} alt="compostable" />
+          </div>
+          <div className="grid-cell"></div>
         </div>
       </div>
      
-      
-
       <div className="grid-container">
         {trashItems ? (
           [...Array(3)].map((_, rowIndex) => (
