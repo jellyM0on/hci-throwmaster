@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    align-items: center;
 }
 
 .pause-menu-container-content button {
@@ -38,5 +39,41 @@
 }
 
 .quit-button:hover {
+    transform: rotate(0deg);
+}
+
+.confirm-text {
+    width: 10em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.confirm-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.confirm-btns button {
+    background-image: url("../../assets/paper2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+}
+
+.cancel-btn {
+    transform: rotate(-5deg);
+}
+
+.cancel-btn:hover {
+    transform: rotate(0deg);
+}
+
+.confirm-btn {
+    transform: rotate(5deg);
+}
+
+.confirm-btn:hover {
     transform: rotate(0deg);
 }
