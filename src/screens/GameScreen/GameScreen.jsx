@@ -12,6 +12,7 @@ import residualBin from "../../assets/bins/bin_residual.png"
 import heart from "../../assets/heart.png"
 import scoreBg from "../../assets/paper3.png"
 import pauseBtn from "../../assets/pause.png"
+import resumeBtn from "../../assets/resume.png"
 
 export default function GameScreen({ mode, screen, setScreen }) {
   const [pause, setPause] = useState(false);
@@ -254,7 +255,7 @@ export default function GameScreen({ mode, screen, setScreen }) {
       </div>
 
       <footer>
-        <button id="pause-btn" onClick={handlePause}><img src={pauseBtn} alt="pause" /></button>
+        <button id="pause-btn" onClick={handlePause}><img src={pause ? resumeBtn : pauseBtn} alt="pause" /></button>
       </footer>
     </div>
   );
