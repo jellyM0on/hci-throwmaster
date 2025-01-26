@@ -24,7 +24,7 @@ export default function GameScreen({ setScreen }) {
       ) {
         setLives((prevLives) => {
           if (prevLives === 1) {
-            setScreen("GameOverScreen");
+            setScreen("GameOver");
           }
           return prevLives - 1;
         });
