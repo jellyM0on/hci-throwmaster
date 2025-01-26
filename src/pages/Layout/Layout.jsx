@@ -40,6 +40,7 @@ export default function Layout({screen, setScreen}){
     return(
         <>
             <header>
+                {screen == "game_screen_easy" || screen == "game_screen_competitive" ? null : 
                 <button onClick={() => {
                     playClick();
                     setScreen("home_screen")
@@ -47,6 +48,7 @@ export default function Layout({screen, setScreen}){
                     }}>
                     <img src={homeBtn} alt="home" />
                 </button> 
+                }
                 <button onClick={handleVolume}><img src={volume ? volumeBtn : silentBtn} alt="volume" /></button>
             </header>
             <Outlet/>
