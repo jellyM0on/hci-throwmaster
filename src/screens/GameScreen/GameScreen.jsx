@@ -1,6 +1,10 @@
 import "./GameScreen.css";
 import { useState, useEffect, useRef } from "react";
 
+import playClick from "../../utils/playClick";
+import playCorrect from "../../utils/playCorrect";
+import playWrong from "../../utils/playWrong";
+
 import PauseMenu from "../../components/PauseMenu/PauseMenu";
 
 import data from "../../assets/data.json"
@@ -66,13 +70,16 @@ export default function GameScreen({ mode, screen, setScreen }) {
   }
 
   const transitionToResult = () => {
+    sessionStorage.setItem("mode", mode); 
     setScreen("result_screen"); 
   }
 
   const updateScore = (currentTrash, bin) => {
     if(currentTrash.bin == bin){
+      playCorrect();
       setScore((prevScore) => prevScore + 100);
     } else {
+      playWrong(); 
       if(livesRef.current == 0){
         transitionToResult(); 
       } else {
@@ -97,6 +104,7 @@ export default function GameScreen({ mode, screen, setScreen }) {
   }
 
   const handlePause = () => {
+    playClick();
     if(!pause){
       setPause(true); 
     } else { 
@@ -104,16 +112,19 @@ export default function GameScreen({ mode, screen, setScreen }) {
     }
   }
 
-
-
   useEffect(() => {
-    localStorage.clear
+    sessionStorage.clear
     randomizeItems()
   }, [])
 
   useEffect(() => {
     livesRef.current = lives;
+    sessionStorage.setItem("lives", livesRef.current);
   }, [lives]);
+
+  useEffect(() => {
+    sessionStorage.setItem("score", score);
+  }, [score])
 
 
   useEffect(() => {
@@ -162,6 +173,8 @@ export default function GameScreen({ mode, screen, setScreen }) {
 
     const timerId = setInterval(() => {
       setTime((prevTime) => prevTime - 1);
+      sessionStorage.setItem("time", formatTime(time-1));
+
     }, 1000);
 
     return () => clearInterval(timerId);
@@ -183,7 +196,6 @@ export default function GameScreen({ mode, screen, setScreen }) {
     randomizeItems();
     
   }, [reset])
-
 
   return (
     <div id="game-screen">

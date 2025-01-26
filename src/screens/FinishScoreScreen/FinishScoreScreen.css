@@ -1,0 +1,36 @@
+#finish-score-screen{
+  z-index: 3;
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.result-container {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.result-container > .btn-container{
+  display: flex; 
+  gap: 2em;
+  margin-top: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-container button {
+  background-image: url("../../assets/paper2.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 1em;
+  padding: 1.5em;
+  transition: transform 0.3s ease;
+  transform: rotate(-5deg);
+}
+
+.result-container button:hover{
+  transform: rotate(0deg);
+}

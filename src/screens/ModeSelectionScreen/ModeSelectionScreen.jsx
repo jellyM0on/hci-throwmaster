@@ -3,6 +3,11 @@ import InfoContainer from "../../components/InfoContainer/InfoContainer"
 import { VscTriangleRight } from "react-icons/vsc"
 import { VscTriangleLeft } from "react-icons/vsc"
 
+import { stopBg } from "../../utils/playBg"
+import { playGameBg } from "../../utils/playGameBg";
+
+import playClick from "../../utils/playClick";
+
 import { useState } from "react"
 
 export default function ModeSelectionScreen({setScreen}) {
@@ -21,7 +26,10 @@ export default function ModeSelectionScreen({setScreen}) {
                         </div> 
                     
                         : 
-                        <button onClick={ () => setMode("easy")}>Easy</button>
+                        <button onClick={ () => {
+                            playClick()
+                            setMode("easy")
+                        }}>Easy</button>
                     }
                     
                     {mode == "competitive" ? 
@@ -31,7 +39,10 @@ export default function ModeSelectionScreen({setScreen}) {
                             <VscTriangleLeft/>
                         </div> 
                         : 
-                        <button onClick={() => setMode("competitive")}>Competitive</button>
+                        <button onClick={() => {
+                            playClick();
+                            setMode("competitive")
+                        }}>Competitive</button>
                     }
                 </div>
                 
@@ -45,13 +56,18 @@ export default function ModeSelectionScreen({setScreen}) {
     const Nav = () => {
 
         const transitionToTutorial = () => {
+            playClick()
             setScreen("tutorial_screen");
         }
 
         const transitionToGame = () => {
+            playClick()
+            stopBg()
             if(mode == "easy"){
+                playGameBg("easy")
                 setScreen("game_screen_easy");
             } else {
+                playGameBg("competitive")
                 setScreen("game_screen_competitive");
             }
         }
