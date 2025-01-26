@@ -6,9 +6,9 @@ import { VscTriangleLeft } from "react-icons/vsc"
 import { useState } from "react"
 
 export default function ModeSelectionScreen({setScreen}) {
+    const [mode, setMode] = useState("easy")
 
     const Content = () => {
-        const [mode, setMode] = useState("easy")
 
         return(
             <div className="mode-selection-content">
@@ -36,7 +36,7 @@ export default function ModeSelectionScreen({setScreen}) {
                 </div>
                 
                 <p className="mode-selection-description">
-                    {mode == "easy" ? "Relaxed and casual gameplay with no timer" : "Zenless Mode. You are a Segregation Machine FOREVER"}
+                    {mode == "easy" ? "Relaxed and casual gameplay with no timer" : "Time limited challenge with a score multiplier"}
                 </p>
             </div>
         )
@@ -49,7 +49,11 @@ export default function ModeSelectionScreen({setScreen}) {
         }
 
         const transitionToGame = () => {
-            setScreen("game_screen");
+            if(mode == "easy"){
+                setScreen("game_screen_easy");
+            } else {
+                setScreen("game_screen_competitive");
+            }
         }
 
         return(

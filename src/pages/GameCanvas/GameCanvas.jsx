@@ -20,14 +20,14 @@ export default function GameCanvas({screen, setScreen}){
 
     const renderScreen = () => {
         switch (screen) {
-            case "home_screen": 
-                setScreen("tutorial_screen")
             case "tutorial_screen": 
                 return <TutorialScreen setScreen={setScreen}/>;
             case "mode_selection":
                 return <ModeSelectionScreen setScreen={setScreen} />;
-            case "game_screen":
-                return <GameScreen />;
+            case "game_screen_easy":
+                return <GameScreen mode="easy" setScreen={setScreen}/>;
+            case "game_screen_competitive":
+                return <GameScreen mode="competitive" setScreen={setScreen}/>;
         }
     };
 

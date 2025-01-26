@@ -7,7 +7,7 @@ export default function InfoContainer({title, content, navBtns, navType}){
 
     return(
         <div className="info-container">
-            <img src={bg} alt="bg" class="info-container-bg"/>
+            <img src={bg} alt="bg" className="info-container-bg"/>
             <div className="info-container-content">
                 <div className="info-container-content-main">
                     <h2>{title}</h2>

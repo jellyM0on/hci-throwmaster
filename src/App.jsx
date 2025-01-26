@@ -8,13 +8,13 @@ import { useState } from "react";
 import './App.css'
 
 function App() {
-    const [screen, setScreen] = useState("home_screen");
+    const [screen, setScreen] = useState("tutorial_screen");
 
   return(
     <BrowserRouter>
       <Routes>
       <Route element={<Layout screen={screen} setScreen={setScreen}/>}>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home setScreen={setScreen}/>}/>
           <Route path="/game" element={<GameCanvas screen={screen} setScreen={setScreen}/>}/>
         </Route>
       </Routes>

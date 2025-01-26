@@ -1,59 +1,123 @@
 import "./GameScreen.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-export default function GameScreen({ setScreen }) {
+import data from "../../assets/data.json"
+
+export default function GameScreen({ mode, setScreen }) {
   const [lives, setLives] = useState(3);
-  const [trashItem, setTrashItem] = useState("carton box");
-  const [can, setCan] = useState("null");
+  const [trashItems, setTrashItems] = useState(null); 
+  const [currentTrash, setCurrentTrash] = useState(null); 
+  const [score, setScore] = useState(0);
+  const [time, setTime] = useState(60); 
+  const [bin, setBin] = useState("null");
 
-  const trashItems = [
-    { name: "carton box", correct: "ArrowDown" },
-    { name: "banana peel", correct: "ArrowUp" },
-    { name: "battery", correct: "ArrowRight" },
-    { name: "plastic bottle", correct: "ArrowDown" },
-  ];
+  const trashItemsRef = useRef();
+
+  const randomizeItems = () => {
+    const objects = data.objects; 
+    const items = []; 
+
+    for (let i=0; i<30; i++){
+      const randIndex = Math.floor(Math.random() * objects.length)
+      items.push(objects[randIndex])
+    }
+
+    setTrashItems(items)
+    trashItemsRef.current = items;
+    randomizeCurrentItem(items);
+  }
+
+  const randomizeCurrentItem = (items) => {
+    const currentItems = items || trashItemsRef.current;
+    if (!currentItems || currentItems.length === 0) return;
+
+    let randIndex;
+
+    do {
+      randIndex = Math.floor(Math.random() * currentItems.length);
+    } while (currentItems[randIndex] === null);
+
+
+    const updatedTrashItems = currentItems.map((item, index) => 
+      index === randIndex ? null : item
+    );
+
+    setCurrentTrash(currentItems[randIndex]);
+    setTrashItems(updatedTrashItems);
+    trashItemsRef.current = updatedTrashItems;
+  }
+
+
+  useEffect(() => {
+    randomizeItems()
+  }, [])
+
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      const correctKey = trashItems.find((item) => item.name === trashItem)?.correct;
-      if (event.key === correctKey) {
-        setCan("Correct!");
-        setTrashItem(trashItems[Math.floor(Math.random() * trashItems.length)].name);
-      } else if (
-        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)
-      ) {
-        setLives((prevLives) => {
-          if (prevLives === 1) {
-            setScreen("GameOver");
-          }
-          return prevLives - 1;
-        });
-        setCan("Wrong!");
+      randomizeCurrentItem(trashItems)
+      let bin; 
+      switch (event.key) {
+        case 'ArrowUp':
+          bin = "compostable"
+          break;
+        case 'ArrowDown':
+          bin = "recyclable"
+          break;
+        case 'ArrowLeft':
+          bin = "residual"
+          break;
+        case 'ArrowRight':
+          bin = "hazardous"
+          break;
       }
+      setBin(bin)
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [trashItem, setScreen, trashItems]);
+  }, []);
 
   return (
     <div id="game-screen">
-      <div className="header">
-        <h3>Lives: {lives}</h3>
+      <div>
+        <p>{bin}</p>
+        <div className="trash-item">
+          <img src={currentTrash ? currentTrash.url : ""} alt="currentTrash" />
+        </div>
       </div>
-      <h2>{can}</h2>
-      <div className="trash-item">
-        <p>{trashItem}</p> {/* Placeholder for asset */}
+     
+      
+
+      <div className="grid-container">
+        {trashItems ? (
+          [...Array(3)].map((_, rowIndex) => (
+            <div className="grid-row" key={rowIndex}>
+              {trashItems
+                .slice(rowIndex * 10, rowIndex * 10 + 10)
+                .map((item, colIndex) => (
+                  <div className="grid-cell" key={colIndex}>
+                    {item ? (
+                      <img
+                        src={item.url}
+                        alt={`Trash item ${rowIndex * 10 + colIndex + 1}`}
+                        className="trash-image"
+                      />
+                    ) : (
+                      <div className="empty-cell"></div>
+                    )}
+                  </div>
+                ))}
+            </div>
+          ))
+        ) : (
+          <p className="loading-message">Loading trash items...</p>
+        )}
       </div>
-      <div className="instructions">
-        <div>Biodegradable (Up)</div>
-        <div>Recyclable (Down)</div>
-        <div>Non-biodegradable (Left)</div>
-        <div>Hazardous (Right)</div>
-      </div>
+
     </div>
   );
 }

@@ -1,12 +1,15 @@
 import "./Home.css"; 
 import bg from "../../assets/bg.png"
 
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function Home(){
+export default function Home({setScreen}){
     const navigate = useNavigate();
 
     const transitionToGame = () => {
+        setScreen("tutorial_screen")
+        
         const body = document.body;
         body.style.overflow = "visible"; 
 

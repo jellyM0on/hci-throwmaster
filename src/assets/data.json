@@ -1,0 +1,32 @@
+{
+    "objects": [
+        {"id": 0, "name": "leaf2", "bin": "compostable", "url": "/trashAssets/leaf2.png" }, 
+        {"id": 1, "name": "apple", "bin": "compostable", "url": "/trashAssets/apple.png" }, 
+        {"id": 2, "name": "avocado", "bin": "compostable", "url": "/trashAssets/avocado.png" }, 
+        {"id": 3, "name": "branch", "bin": "compostable", "url": "/trashAssets/branch.png" }, 
+        {"id": 4, "name": "leaf", "bin": "compostable", "url": "/trashAssets/leaf.png" }, 
+        {"id": 5, "name": "banana_peel", "bin": "compostable", "url": "/trashAssets/banana_peel.png" }, 
+
+        {"id":6,"name":"can","bin":"recyclable","url":"/trashAssets/can.png"},
+        {"id":7,"name":"can2","bin":"recyclable","url":"/trashAssets/can2.png"},
+        {"id":8,"name":"bag","bin":"recyclable","url":"/trashAssets/bag.png"},
+        {"id":9,"name":"cloth","bin":"recyclable","url":"/trashAssets/cloth.png"},
+        {"id":10,"name":"bottle","bin":"recyclable","url":"/trashAssets/bottle.png"},
+        {"id":11,"name":"cardboard","bin":"recyclable","url":"/trashAssets/cardboard.png"},
+        {"id":12,"name":"shoes","bin":"recyclable","url":"/trashAssets/shoes.png"},
+
+        {"id":13,"name":"porcelain","bin":"residual","url":"/trashAssets/porcelain.png"},
+        {"id":14,"name":"napkin","bin":"residual","url":"/trashAssets/napkin.png"},
+        {"id":15,"name":"chips","bin":"residual","url":"/trashAssets/chips.png"},
+        {"id":16,"name":"glass","bin":"residual","url":"/trashAssets/glass.png"},
+        {"id":17,"name":"wrapper","bin":"residual","url":"/trashAssets/wrapper.png"},
+        {"id":18,"name":"carton","bin":"residual","url":"/trashAssets/carton.png"},
+
+        {"id":19,"name":"radio","bin":"hazardous","url":"/trashAssets/radio.png"},
+        {"id":20,"name":"charger","bin":"hazardous","url":"/trashAssets/charger.png"},
+        {"id":21,"name":"aerosol","bin":"hazardous","url":"/trashAssets/aerosol.png"},
+        {"id":22,"name":"battery","bin":"hazardous","url":"/trashAssets/battery.png"},
+        {"id":23,"name":"appliance","bin":"hazardous","url":"/trashAssets/appliance.png"}
+    ]
+}
+  
