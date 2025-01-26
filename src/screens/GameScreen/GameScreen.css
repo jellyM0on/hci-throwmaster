@@ -79,7 +79,7 @@
 .current-trash-container {
   background-color: rgba(247, 244, 239);
   border-radius: 100%;
-  border-style: dashed;
+  border-style: solid;
   padding: 1em;
   display: flex;
   align-items: center;
@@ -92,6 +92,11 @@
   right: 2.5em; 
   height: 5em;
   padding: 2em;
+  text-align: right;
+}
+
+.lives-container h2 {
+  font-size: 2em;
 }
 
 .lives-container img {
@@ -121,4 +126,19 @@
   left: 0;
   transform: translateX(-50%)
 
+}
+
+.score-container p{
+  text-align: center;
+  position: absolute;
+  font-size: 1em;
+  margin-top: 4em;
+  font-weight: bold;
+  left: 0;
+  transform: translateX(-50%)
+
+}
+
+.highlight-time {
+  color: rgb(224, 61, 58);
 }

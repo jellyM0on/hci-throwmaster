@@ -5,6 +5,7 @@ import "./GameCanvas.css"
 import ModeSelectionScreen from "../../screens/ModeSelectionScreen/ModeSelectionScreen";
 import GameScreen from "../../screens/GameScreen/GameScreen";
 import TutorialScreen from "../../screens/TutorialScreen/TutorialScreen";
+import ResultScreen from "../../screens/ResultScreen/ResultScreen";
 
 export default function GameCanvas({screen, setScreen}){
     useEffect(() => {
@@ -28,6 +29,8 @@ export default function GameCanvas({screen, setScreen}){
                 return <GameScreen mode="easy" setScreen={setScreen}/>;
             case "game_screen_competitive":
                 return <GameScreen mode="competitive" setScreen={setScreen}/>;
+            case "result_screen":
+                return <ResultScreen/>
         }
     };
 

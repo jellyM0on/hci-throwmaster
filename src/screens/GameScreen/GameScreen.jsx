@@ -11,13 +11,17 @@ import heart from "../../assets/heart.png"
 import scoreBg from "../../assets/paper3.png"
 
 export default function GameScreen({ mode, setScreen }) {
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(mode == "easy" ? 5 : 3)
   const [trashItems, setTrashItems] = useState(null); 
   const [currentTrash, setCurrentTrash] = useState(null); 
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(60); 
+  const [time, setTime] = useState(7); 
   const [bin, setBin] = useState(null);
 
+
+  const livesRef = useRef(lives); 
+  const scoreRef = useRef(score); 
+  const timeRef = useRef(time); 
   const trashItemsRef = useRef();
   const currentTrashRef = useRef(currentTrash);
 
@@ -37,7 +41,7 @@ export default function GameScreen({ mode, setScreen }) {
 
   const randomizeCurrentItem = (items) => {
     const currentItems = trashItemsRef.current;
-    if (!currentItems || currentItems.length === 0) return;
+    if (!currentItems || currentItems.every((item) => item === null)) return;
 
     let randIndex;
 
@@ -56,20 +60,46 @@ export default function GameScreen({ mode, setScreen }) {
     trashItemsRef.current = updatedTrashItems;
   }
 
+  const transitionToResult = () => {
+    setScreen("result_screen"); 
+  }
+
   const updateScore = (currentTrash, bin) => {
-    console.log(currentTrash)
-    console.log(bin)
     if(currentTrash.bin == bin){
       setScore((prevScore) => prevScore + 100);
     } else {
-      setLives((prevLives) => prevLives - 1);
+      if(livesRef.current == 0){
+        transitionToResult(); 
+      } else {
+        setLives((prevLives) => prevLives - 1);
+      }
     }
+
+    if(trashItemsRef.current.every((item) => item === null)){
+      transitionToResult(); 
+    }
+  }
+
+  const formatTime = (time) => {
+    const date = new Date(time * 1000);
+    let mm = date.getUTCMinutes();
+    let ss = date.getSeconds();
+
+    if (mm < 10) {mm = "0"+mm}
+    if (ss < 10) {ss = "0"+ss}
+
+    return mm+":"+ss;
   }
 
 
   useEffect(() => {
+    localStorage.clear
     randomizeItems()
   }, [])
+
+  useEffect(() => {
+    livesRef.current = lives;
+  }, [lives]);
 
 
   useEffect(() => {
@@ -104,6 +134,21 @@ export default function GameScreen({ mode, setScreen }) {
     };
   }, []);
 
+  useEffect(() => {
+    if(mode == "easy") return
+
+    if (time <= 0) {
+      transitionToResult();
+    }
+
+    const timerId = setInterval(() => {
+      setTime((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [time]);
+
+
   return (
     <div id="game-screen">
 
@@ -113,6 +158,7 @@ export default function GameScreen({ mode, setScreen }) {
       </div>
 
       <div className="lives-container">
+        {mode == "competitive" ? <h2 className={time < 5 ? "highlight-time": null}>{formatTime(time)}</h2> : null}
         {Array.from({ length: lives }).map((_, index) => (
           <img key={index} src={heart} alt="heart"/>
         ))}

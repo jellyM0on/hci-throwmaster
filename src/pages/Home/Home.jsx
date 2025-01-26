@@ -29,7 +29,7 @@ export default function Home({setScreen}){
             <div id="home-title-container">
                 <h1>THROW <br></br> MASTER</h1>
                 <button className="button-1" onClick={transitionToGame}>Start</button>
-                <button className="button-2">Tutorial</button>
+                <button className="button-2">About</button>
             </div>
             <div id="home-bg">
                 <img src={bg} alt="home background" />
