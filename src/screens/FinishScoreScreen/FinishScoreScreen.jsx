@@ -68,10 +68,10 @@ function FinishScoreScreen({setScreen}) {
   const Content = () => {
     return(
       <div class="result-container">
-        <p>Mode: {mode.toUpperCase()}</p>
-        <p>Score: {score}</p>
-        <p>Remaining Lives: {lives} </p>
-        <p>{mode == "competitive" ? time : null}</p>
+        <p><strong>Mode:</strong> {mode.toUpperCase()}</p>
+        <p><strong>Score:</strong> {score}</p>
+        <p><strong>Remaining Lives:</strong> {lives} </p>
+        {mode == "competitive" ? <p><strong>Remaining Time: </strong>{time}</p> : null}
         <div class="btn-container">
             <button onClick={handleHome}>Back to Home</button>
             <button onClick={handleAgain}>Play again</button>

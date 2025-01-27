@@ -9,7 +9,10 @@
 
 .result-container {
   text-align: center;
-  font-size: 1.5em;
+}
+
+.result-container p{
+  font-size: 1em;
 }
 
 .result-container > .btn-container{
